@@ -54,15 +54,15 @@ let
   #   propagatedBuildInputs = [ pyPak.cffi pkgs.openssl pyPak.six ];
   #   doCheck = false;
   # };
-  pygithub = pyPak.buildPythonPackage rec {
+  o_pygithub = pyPak.buildPythonPackage rec {
     pname = "PyGithub";
-    version = "1.55";
+    version = "1.47";
     src = pyPak.fetchPypi {
       inherit pname version;
-      sha256 = "sha256-G7//k3IEf/PyHVzY4Hcg89v9r2Ri/K7Z2BX1KPG6coM=";
+      sha256 = "sha256-8+cBoieoGhb+NWla6BLBzpKQ37alGQs2TCnO99hjihA=";
     };
     propagatedBuildInputs = (with pyPak; [
-      pyjwt
+      o_pyjwt
       deprecated
       pynacl
       requests 
@@ -202,6 +202,15 @@ let
       sha256 = "sha256-zwoYmC2ETE8AzXPDHSGOwjKHgLGhVEvXw7zKeWUFyPI=";
     };
   };
+  o_pyjwt = pyPak.buildPythonPackage rec {
+    pname = "PyJWT";
+    version = "1.7.1";
+    src = pyPak.fetchPypi {
+      inherit pname version;
+      sha256 = "sha256-jVmpdvt3Pz5qOchWNjV8Tw4kJwc5TK2t2YFPXLqiDpY=";
+    };
+    doCheck = false;
+  };
 in pyPak.buildPythonPackage {
   pname = "yotta";
   version = "0.20.0";
@@ -218,17 +227,18 @@ in pyPak.buildPythonPackage {
     colorama
     jsonschema
     intelhex
-    pygithub
+    o_pyjwt
+    o_pygithub
     pathlib2
     valinor
     semantic-version
-    pyjwt
     argcomplete
     jinja2
     mbed-test-wrapper
+    cryptography
   ]);
   postPatch = ''
-    sed -i "s/PyJWT>=1.0,<2.0/PyJWT>=2.0/g" setup.py
+    # sed -i "s/PyJWT>=1.0,<2.0/PyJWT==1.7.1/g" setup.py
     sed -i "s/argcomplete>=0.8.0,<2.0/argcomplete>=2.0.0/g" setup.py
     sed -i "s/Jinja2>=2.7.0,<3/Jinja2>=2.7.0/g" setup.py
     sed -i "s/cryptography>=2.8,<3/cryptography>=2.8/g" setup.py
