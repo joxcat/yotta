@@ -211,7 +211,7 @@ let
     };
     doCheck = false;
   };
-in pyPak.buildPythonPackage {
+in pyPak.buildPythonApplication {
   pname = "yotta";
   version = "0.20.0";
   src = yottaSrc;
