@@ -18,7 +18,8 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "utils": "utils"
+        "utils": "utils",
+        "yottaSrc": "yottaSrc"
       }
     },
     "utils": {
@@ -33,6 +34,23 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "yottaSrc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1610718587,
+        "narHash": "sha256-xvMVw0aD8qLkwkT63u2s5QDecKY5DAQdGUw/0jF0DMY=",
+        "owner": "joxcat",
+        "repo": "yotta",
+        "rev": "82d854b43d391abb5a006b05e7beffe7d0d6ffbf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "joxcat",
+        "repo": "yotta",
+        "rev": "82d854b43d391abb5a006b05e7beffe7d0d6ffbf",
         "type": "github"
       }
     }
