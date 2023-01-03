@@ -233,13 +233,13 @@
         '';
         doCheck = false;
       };
-      in rec {
-        packages.default = yotta;
-        devShells.${system} = pkgs.mkShell {
-          packages = [
-            yotta
-          ];
-        };
+      yottaPackage = pkgs.stdenvNoCC.mkDerivation {
+        pname = "yotta";
+        version = "0.1.0";
+        buildInputs = [ yotta ];
+      };
+      in {
+        packages.default = yottaPackage;
       }
     );
 }
