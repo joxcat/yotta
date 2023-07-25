@@ -47,8 +47,7 @@
       };
       devShells = {
         default = pkgs.mkShell {
-          buildInputs = with pkgs; [ poetry ];
-          inputsFrom = [ yotta ];
+          buildInputs = with pkgs; [ poetry yotta ];
         };
       };
     }
